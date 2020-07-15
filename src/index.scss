@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +7,144 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $dark-blue;
+
+  color: #fff;
+}
+
+pre {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 code {
+  color: green;
+  background-color: black;
+  border-radius: 0.2em;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  color: white
+}
+
+main {
+  display: grid;
+  grid-template: "header"auto "content"1fr "footer"auto / 1fr;
+}
+
+footer {
+  grid-area: footer;
+  width: 100%;
+  text-align: center;
+}
+
+header {
+  grid-area: header;
+  margin-bottom: 1em;
+
+  main.App>& {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a,
+    span.logo {
+      padding: 10px;
+      border-radius: 5%;
+      margin: 0.2em;
+      opacity: 0.6;
+      transition: 0.3s;
+
+      &:hover, &.chosen {
+        opacity: 1;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      background-color: $secondary;
+      color: #fff;
+    }
+
+    span.logo {
+      background-color: $primary;
+    }
+  }
+}
+
+table {
+
+  border-collapse: separate;
+  border-spacing: 1em 0.2em;
+
+  th,
+  img.sorted {
+    transition: 0.3s ease-in;
+  }
+
+  img.sorted.desc {
+    transform: rotate(180deg);
+  }
+
+
+  th {
+    text-transform: uppercase;
+    text-align: left;
+
+    &.sorted {
+      border-radius: 4%;
+      background-color: $secondary;
+    }
+
+    .container {
+      display: grid;
+      gap: 1em;
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+
+  tr {
+    cursor: pointer;
+    border-bottom: 1px solid #fff; // fixme: row style
+
+    &.chosen {
+      color: $secondary;
+      font-weight: bolder;
+    }
+  }
+}
+
+section {
+  &.page {
+    display: flex;
+    justify-content: center;
+    margin: 0 1em;
+  }
+
+  aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    &>*:not(:last-child) {
+      margin-bottom: 3em;
+    }
+  }
+
+  aside,
+  article {
+    background: $box-background;
+    box-shadow: 0px 6px 18px $secondary;
+    border-radius: 4px;
+    padding: 1em;
+    margin: 0 1em;
+  }
 }
